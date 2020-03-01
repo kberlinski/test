@@ -11,7 +11,11 @@ namespace testcsharp
         static async Task Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var emails = await GetEmails("https://www.pja.edu.pl/");
+            foreach (var a  in args)
+            {
+                Console.WriteLine(a);
+            }
+            var emails = await GetEmails(args[0]);
 
             foreach(var email in emails)
             {
@@ -26,9 +30,9 @@ namespace testcsharp
 
             var listOfEmails = new List<string>();
             //listOfEmails.Add(response.Content.ReadAsStringAsync().Result);
+            // regex na stacku c# find email address in string
             Regex emailRegex = new Regex(@"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*",
             RegexOptions.IgnoreCase);
-            //find items that matches with our pattern
             MatchCollection emailMatches = emailRegex.Matches(response.Content.ReadAsStringAsync().Result);
 
 
